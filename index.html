@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Popup</title>
+    <style>
+        .list__item{
+            margin-bottom: 10px;
+        }
+        .list__item label {
+            font-size: 20px;
+        }
+        .wrapper {
+            height: auto;
+            width: 200px;
+            justify-content: center;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        }
+        .run-btn {
+            font-size: 15px;
+            width: 40px;
+            height: 25px;
+            background: orangered;
+            color: white;
+            border-radius: 5px;
+            
+            border: 0;
+        }
+        .run-btn:active {
+            background: rgb(155, 44, 0);
+        }
+        .title {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+        .message-box p{
+            margin:0;
+            font-size: 15px;
+        }
+        .set-time {
+            margin: 10px 0 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="list">
+            <div class="title">
+                <span>Choose the services:</span>
+            </div>
+            <div class="message-box">
+                <p>Paste the sheets app link</p>
+                <input type="text" name="" id="" class="text-box">
+            </div>
+            <div class="message-box">
+                <select class="set-time">
+                    <option value="d">Run daily at</option>
+                    <option value="h">Set interval</option>
+                </select>
+            </div>
+            <div class="message-box">
+                <p>hours</p>
+                <input type="number" maxlength="2" name="" min="0" max="24" id="" class="text-box-hourly">
+            </div>
+            
+            <div class="list__item">
+                <input id="RedBubble" type="checkbox" checked="true">
+                <label for="s1">RedBubble</label>
+            </div>
+            <!-- <div class="list__item">
+                <input id="Amazon" type="checkbox" >
+                <label for="s1">Amazon</label>
+            </div>
+            <div class="list__item">
+                <input id="Other" type="checkbox" >
+                <label for="s1">Other</label>
+            </div> -->
+            
+        </div>
+        
+        <button class="run-btn">Run</button>
+        <script src="script.js"></script>
+    </div>
+    
+</body>
+</html>
