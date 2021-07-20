@@ -13,6 +13,7 @@
             font-size: 20px;
         }
         .wrapper {
+            border-radius: 20px;
             height: auto;
             width: 200px;
             justify-content: center;
@@ -43,14 +44,17 @@
         .set-time {
             margin: 10px 0 10px 0;
         }
+        
     </style>
 </head>
 <body>
     <div class="wrapper">
-        <div class="list">
+       
+        <div class="RB ">
             <div class="title">
                 <span>Choose the services:</span>
             </div>
+            
             <div class="message-box">
                 <p>Paste the sheets app link</p>
                 <input type="text" name="" id="" class="text-box">
@@ -70,18 +74,18 @@
                 <input id="RedBubble" type="checkbox" checked="true">
                 <label for="s1">RedBubble</label>
             </div>
-            <!-- <div class="list__item">
-                <input id="Amazon" type="checkbox" >
-                <label for="s1">Amazon</label>
-            </div>
+
             <div class="list__item">
-                <input id="Other" type="checkbox" >
-                <label for="s1">Other</label>
-            </div> -->
+                <input id="TeeSpring" type="checkbox" >
+                <label for="s1">TeeSpring</label>
+            </div>
+
             
+    
+            <button class="run-btn">Run</button>
         </div>
         
-        <button class="run-btn">Run</button>
+        
         <script src="script.js"></script>
     </div>
     

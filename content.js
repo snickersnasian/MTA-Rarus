@@ -1,5 +1,5 @@
 
-// function uploadPrint() {
+// function RBuploadPrint() {
 //     async function uploadImagePOST(file) {
 //         var url = 'https://ih.redbubble.com/work_images.json?image_type=base'
 //         var n = new FormData;
@@ -35,55 +35,55 @@
 //         RBfillForm(); 
 //     }
     
-//     async function RBfetchData(gasUrl){
-//         let res = await fetch(gasUrl);
-//         let json = await res.json();
-//         return json.data; // returns a 2 dimensions array of info
-//     }
+    // async function fetchData(gasUrl){
+    //     let res = await fetch(gasUrl);
+    //     let json = await res.json();
+    //     return json.data; // returns a 2 dimensions array of info
+    // }
     
 //     async function RBfillForm() {
-//         let url = "https://www.redbubble.com/portfolio/images/new";
+        // let url = "https://www.redbubble.com/portfolio/images/new";
     
-//         let gasUrl = window.location.hash.slice(12, 124);
-//         let hash = "/" +  window.location.hash.slice(0, 12);
-//         let hashArr = hash.split('');
-//         let i = hashArr.pop();
+        // let gasUrl = window.location.hash.slice(12, 124);
+        // let hash = "/" +  window.location.hash.slice(0, 12);
+        // let hashArr = hash.split('');
+        // let i = hashArr.pop();
         
-//         let data = await RBfetchData(gasUrl);
+        // let data = await fetchData(gasUrl);
         
-//         let fileStr = data[i][0]
-//         let title = data[i][1];
-//         let desc = data[i][2];
-//         let tag = data[i][3];
+        // let fileStr = data[i][0]
+        // let title = data[i][1];
+        // let desc = data[i][2];
+        // let tag = data[i][3];
     
-//         res = await fetch(fileStr);
-//         file = await res.blob();
+        // res = await fetch(fileStr);
+        // file = await res.blob();
     
-//         // uploadImagePOST(file);
+        // // uploadImagePOST(file);
     
         
     
-//         document.getElementById("work_title_en").value = title;
-//         document.getElementById("work_tag_field_en").value = tag;
-//         document.getElementById("work_description_en").value = desc;
+        // document.getElementById("work_title_en").value = title;
+        // document.getElementById("work_tag_field_en").value = tag;
+        // document.getElementById("work_description_en").value = desc;
     
-//         document.getElementById("work_safe_for_work_true").checked = true;
-//         document.getElementById("rightsDeclaration").checked = true;
+        // document.getElementById("work_safe_for_work_true").checked = true;
+        // document.getElementById("rightsDeclaration").checked = true;
     
-//         await new Html5Uploader("base",new MultiProductUpload,file).uploadFile()
+        // await new Html5Uploader("base",new MultiProductUpload,file).uploadFile()
     
-//         setTimeout(() => {document.getElementById("submit-work").click();}, 8000); 
+        // setTimeout(() => {document.getElementById("submit-work").click();}, 8000); 
     
-//         if (data.length > 1) {
-//             // i++;
-//             hashArr.push(i);
-//             hash = hashArr.join('');
-//             if (i < data.length){
-//                 window.open(url+hash+gasUrl);
-//             }    
-//         }
+        // if (data.length > 1) {
+        //     // i++;
+        //     hashArr.push(i);
+        //     hash = hashArr.join('');
+        //     if (i < data.length){
+        //         window.open(url+hash+gasUrl);
+        //     }    
+        // }
     
-//         console.log(title + " " + desc + " " + tag)
+        // console.log(title + " " + desc + " " + tag)
 //     }
     
     
@@ -91,7 +91,7 @@
 
 // }
 
-// uploadPrint();
+// RBuploadPrint();
 
 // var type = window.location.hash.slice(-1)
 // var interval = window.location.hash.slice(124, window.location.hash.length - 1);
@@ -117,6 +117,46 @@ scriptTag.innerHTML = myJavaScript;
 document.head.appendChild(scriptTag);
 
 
+async function fetchData(gasUrl){
+    let res = await fetch(gasUrl);
+    let json = await res.json();
+    return json.data; // returns a 2 dimensions array of info
+}
 
 
+if (window.location.hash[1] === "T") {
+    TSuploadPrint(); 
+}
 
+function TSuploadPrint() {
+    let url = "https://www.redbubble.com/portfolio/images/new";
+
+    let gasUrl = window.location.hash.slice(12, 124);
+    let hash = "/" +  window.location.hash.slice(0, 12);
+    let hashArr = hash.split('');
+    let i = hashArr.pop();
+    
+    let data = await fetchData(gasUrl);
+    
+    let fileStr = data[i][0]
+    let title = data[i][1];
+    let desc = data[i][2];
+    let tag = data[i][3];
+
+    res = await fetch(fileStr);
+    file = await res.blob();
+
+
+    setTimeout(() => {document.getElementById("submit-work").click();}, 8000); 
+
+    if (data.length > 1) {
+        // i++;
+        hashArr.push(i);
+        hash = hashArr.join('');
+        if (i < data.length){
+            window.open(url+hash+gasUrl);
+        }    
+    }
+
+    console.log(title + " " + desc + " " + tag)
+}
