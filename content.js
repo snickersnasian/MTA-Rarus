@@ -35,55 +35,55 @@
 //         RBfillForm(); 
 //     }
     
-    // async function fetchData(gasUrl){
-    //     let res = await fetch(gasUrl);
-    //     let json = await res.json();
-    //     return json.data; // returns a 2 dimensions array of info
-    // }
+//     async function fetchData(gasUrl){
+//         let res = await fetch(gasUrl);
+//         let json = await res.json();
+//         return json.data; // returns a 2 dimensions array of info
+//     }
     
 //     async function RBfillForm() {
-        // let url = "https://www.redbubble.com/portfolio/images/new";
+//         let url = "https://www.redbubble.com/portfolio/images/new";
     
-        // let gasUrl = window.location.hash.slice(12, 124);
-        // let hash = "/" +  window.location.hash.slice(0, 12);
-        // let hashArr = hash.split('');
-        // let i = hashArr.pop();
+//         let gasUrl = window.location.hash.slice(12, 124);
+//         let hash = "/" +  window.location.hash.slice(0, 12);
+//         let hashArr = hash.split('');
+//         let i = hashArr.pop();
         
-        // let data = await fetchData(gasUrl);
+//         let data = await fetchData(gasUrl);
         
-        // let fileStr = data[i][0]
-        // let title = data[i][1];
-        // let desc = data[i][2];
-        // let tag = data[i][3];
+//         let fileStr = data[i][0]
+//         let title = data[i][1];
+//         let desc = data[i][2];
+//         let tag = data[i][3];
     
-        // res = await fetch(fileStr);
-        // file = await res.blob();
+//         res = await fetch(fileStr);
+//         file = await res.blob();
     
-        // // uploadImagePOST(file);
+//         // uploadImagePOST(file);
     
         
     
-        // document.getElementById("work_title_en").value = title;
-        // document.getElementById("work_tag_field_en").value = tag;
-        // document.getElementById("work_description_en").value = desc;
+//         document.getElementById("work_title_en").value = title;
+//         document.getElementById("work_tag_field_en").value = tag;
+//         document.getElementById("work_description_en").value = desc;
     
-        // document.getElementById("work_safe_for_work_true").checked = true;
-        // document.getElementById("rightsDeclaration").checked = true;
+//         document.getElementById("work_safe_for_work_true").checked = true;
+//         document.getElementById("rightsDeclaration").checked = true;
     
-        // await new Html5Uploader("base",new MultiProductUpload,file).uploadFile()
+//         await new Html5Uploader("base",new MultiProductUpload,file).uploadFile()
     
-        // setTimeout(() => {document.getElementById("submit-work").click();}, 8000); 
+//         setTimeout(() => {document.getElementById("submit-work").click();}, 8000); 
     
-        // if (data.length > 1) {
-        //     // i++;
-        //     hashArr.push(i);
-        //     hash = hashArr.join('');
-        //     if (i < data.length){
-        //         window.open(url+hash+gasUrl);
-        //     }    
-        // }
+//         if (data.length > 1) {
+//             // i++;
+//             hashArr.push(i);
+//             hash = hashArr.join('');
+//             if (i < data.length){
+//                 window.open(url+hash+gasUrl);
+//             }    
+//         }
     
-        // console.log(title + " " + desc + " " + tag)
+//         console.log(title + " " + desc + " " + tag)
 //     }
     
     
@@ -159,4 +159,26 @@ function TSuploadPrint() {
     }
 
     console.log(title + " " + desc + " " + tag)
+}
+
+async function uploadImagePOST(file) {
+    var url = 'https://api.printful.com/files'
+    var n = new FormData;
+
+
+
+
+    xhr = new XMLHttpRequest();
+   
+    xhr.open('POST', url)
+    xhr.setRequestHeader("Authorization", "Basic " + "dDZ3YjFodzktMjJoby1jcWJzOjRpb2gtbW9ueHUxZTc2dDJh");
+    xhr.send("{\"url\":\"https://sun1-28.userapi.com/impg/Dse7Ghtl2kZl7YnlRCGF8q6GpKWglRQHgTypvA/noP-buLtJIg.jpg?size=1280x648&quality=96&sign=23617fe64e90b974d36527b14680c8f5&type=album\"}");
+
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState === 4) {
+          xhrRes= JSON.parse(xhr.response);
+          let imgUrl = xhrRes.work_image.base_image_url;
+          uploadImageGET(imgUrl)
+        }
+    }
 }
