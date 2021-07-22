@@ -21,23 +21,28 @@ document.querySelector(".run-btn").addEventListener("click", () => {
         }
         
     }
-    if ( document.getElementById("TeeSpring").checked && document.querySelector(".text-box").value){
+    if ( document.getElementById("Printful").checked && document.querySelector(".text-box-api").value){
         let linkGS = document.querySelector(".text-box").value;
-        
+        let apiKey = document.querySelector(".text-box-api").value;
         let choice = document.querySelector(".set-time").value;
-        let hash ="/#TSautomate0"
-        let url = "https://teespring.com/design-launcher/design/e729d91f-c41d-487e-ba8b-1d62961863af"
+        let hash ="/#PFautomate"
+        let url = "https://www.printful.com"
 
         if (linkGS){
             if (choice == "d") {
-                window.open(url+hash+linkGS+dailyInterval);
+                window.open(url+hash+linkGS+apiKey+dailyInterval);
                 
             }
             else if (choice == "h"){
-                window.open(url+hash+linkGS+hourInteval);
+                window.open(url+hash+linkGS+apiKey+hourInteval);
             }
         }
         
     }
 })
 
+document.getElementById("Printful").addEventListener("click", () => {
+    document.querySelector(".message-box-api").classList.toggle("invisible")
+})
+    
+  

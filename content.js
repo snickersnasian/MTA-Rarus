@@ -86,27 +86,25 @@
 //         console.log(title + " " + desc + " " + tag)
 //     }
     
-    
-    
 
 // }
 
 // RBuploadPrint();
 
-// var type = window.location.hash.slice(-1)
+// var type = window.location.hash.slice(-1);
 // var interval = window.location.hash.slice(124, window.location.hash.length - 1);
 
 // if (type == "d") {
 //     setInterval(function(){ // Set interval for checking
 //         var date = new Date(); // Create a Date object to find out what time it is
 //         if(date.getHours() == interval && date.getMinutes() === 0){ // Check the time
-//             uploadPrint();
+//             RBuploadPrint();
 //         }
 //     }, 60000); // Repeat every 60000 milliseconds (1 minute)
     
 // }
 // else if (type == "h") {
-//     setInterval(uploadPrint(), interval * 1000 * 60 * 60)
+//     setInterval(RBuploadPrint(), interval * 1000 * 60 * 60)
 // }
 
 
@@ -124,61 +122,46 @@ async function fetchData(gasUrl){
 }
 
 
-if (window.location.hash[1] === "T") {
-    TSuploadPrint(); 
-}
+if (window.location.hash[1] === "P") {
+    PFuploadPrint(); 
 
-function TSuploadPrint() {
-    let url = "https://www.redbubble.com/portfolio/images/new";
-
-    let gasUrl = window.location.hash.slice(12, 124);
-    let hash = "/" +  window.location.hash.slice(0, 12);
-    let hashArr = hash.split('');
-    let i = hashArr.pop();
-    
-    let data = await fetchData(gasUrl);
-    
-    let fileStr = data[i][0]
-    let title = data[i][1];
-    let desc = data[i][2];
-    let tag = data[i][3];
-
-    res = await fetch(fileStr);
-    file = await res.blob();
-
-
-    setTimeout(() => {document.getElementById("submit-work").click();}, 8000); 
-
-    if (data.length > 1) {
-        // i++;
-        hashArr.push(i);
-        hash = hashArr.join('');
-        if (i < data.length){
-            window.open(url+hash+gasUrl);
-        }    
+    var type = window.location.hash.slice(-1);
+    var interval = window.location.hash.slice(159,window.location.hash.length - 1);
+    if (type == "d") {
+        setInterval(function(){ // Set interval for checking
+            var date = new Date(); // Create a Date object to find out what time it is
+            if(date.getHours() == interval && date.getMinutes() === 0){ // Check the time
+                PFuploadPrint();
+            }
+        }, 60000); // Repeat every 60000 milliseconds (1 minute)
+        
     }
-
-    console.log(title + " " + desc + " " + tag)
+    else if (type == "h") {
+        setInterval(PFuploadPrint(), interval * 1000 * 60 * 60)
+    }
 }
 
-async function uploadImagePOST(file) {
+
+
+async function PFuploadPrint() {
     var url = 'https://api.printful.com/files'
-    var n = new FormData;
 
+    let gasUrl = window.location.hash.slice(11, 123);
+    let token = window.location.hash.slice(123,159);
+    
 
+    var data = await fetchData(gasUrl);
 
+    for (let i =0; i < data.length; i++) {
+        let fileStr = data[i][0]
+        let jsonBody = JSON.stringify({url: fileStr});
 
-    xhr = new XMLHttpRequest();
-   
-    xhr.open('POST', url)
-    xhr.setRequestHeader("Authorization", "Basic " + "dDZ3YjFodzktMjJoby1jcWJzOjRpb2gtbW9ueHUxZTc2dDJh");
-    xhr.send("{\"url\":\"https://sun1-28.userapi.com/impg/Dse7Ghtl2kZl7YnlRCGF8q6GpKWglRQHgTypvA/noP-buLtJIg.jpg?size=1280x648&quality=96&sign=23617fe64e90b974d36527b14680c8f5&type=album\"}");
+        
 
-    xhr.onreadystatechange = function() {
-        if (xhr.readyState === 4) {
-          xhrRes= JSON.parse(xhr.response);
-          let imgUrl = xhrRes.work_image.base_image_url;
-          uploadImageGET(imgUrl)
-        }
+        xhr = new XMLHttpRequest();
+        xhr.open('POST', url)
+        xhr.setRequestHeader("Authorization", "Basic " + btoa(token));
+        xhr.send(jsonBody);
     }
+
 }

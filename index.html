@@ -39,12 +39,21 @@
         }
         .message-box p{
             margin:0;
-            font-size: 15px;
+            
+        }
+        .message-box-api p{
+            margin:0;
+            
+        }
+        .invisible{
+            display: none;
         }
         .set-time {
             margin: 10px 0 10px 0;
         }
-        
+        .RB {
+            font-size: 15px;
+        }
     </style>
 </head>
 <body>
@@ -57,8 +66,14 @@
             
             <div class="message-box">
                 <p>Paste the sheets app link</p>
-                <input type="text" name="" id="" class="text-box">
+                <input type="text" name="" id="" class="text-box" >
             </div>
+
+            <div class="message-box-api invisible">
+                <p>Paste your printful API key</p>
+                <input type="text" name="" id="" class="text-box-api" >
+            </div>
+
             <div class="message-box">
                 <select class="set-time">
                     <option value="d">Run daily at</option>
@@ -76,8 +91,8 @@
             </div>
 
             <div class="list__item">
-                <input id="TeeSpring" type="checkbox" >
-                <label for="s1">TeeSpring</label>
+                <input id="Printful" type="checkbox" >
+                <label for="s1">Printful</label>
             </div>
 
             
